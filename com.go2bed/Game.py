@@ -1,15 +1,30 @@
+from random import randint
+
 game_is_over = False
 
 board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-def play_the_game():
-    print("the board is ")
+
+def choose_first():
+    player = randint(1, 2)
+    return player
+
+
+def play_the_game(player):
+    user_1 = 'X'
+    user_2 = 'O'
     display_board(board)
-    position = player_input()
-    place_marker(board, 'X', position)
-    win_check(board, position)
-    print("your choice is: " + position)
+    if player == 1:
+        print("The first player (X) is turn first")
+        position = player_input(user_1)
+        place_marker(board, user_1, position)
+    else:
+        print("The second player (O) is turn first")
+        position = player_input(user_2)
+        place_marker(board, user_2, position)
+    print("the board is ")
     pass
+
 
 def display_board(board):
     i = 0
@@ -22,7 +37,7 @@ def display_board(board):
     pass
 
 
-def player_input():
+def player_input(user):
     position = input("your turn, select the number")
     return position
 
@@ -31,6 +46,7 @@ def place_marker(board, marker, position):
     if check_if_is_number(position):
         board[int(position) - 1] = marker
         display_board(board)
+        win_check(board)
     else:
         print_error()
 
@@ -88,7 +104,9 @@ def print_error():
     pass
 
 
+player = choose_first()
+
 while game_is_over is not True and board.__sizeof__() != 0:
-    play_the_game()
+    play_the_game(player)
 else:
     print('The Game is over')
