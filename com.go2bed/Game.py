@@ -38,7 +38,7 @@ def display_board(board):
 
 
 def player_input(user):
-    position = input("your turn, select the number")
+    position = input("your turn, " + user + " select the number")
     return position
 
 
