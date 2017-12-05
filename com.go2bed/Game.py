@@ -13,6 +13,7 @@ def choose_first():
 def play_the_game(player):
     user_1 = 'X'
     user_2 = 'O'
+    print("the board is ")
     display_board(board)
     if player == 1:
         print("The first player (X) is turn first")
@@ -22,7 +23,6 @@ def play_the_game(player):
         print("The second player (O) is turn first")
         position = player_input(user_2)
         place_marker(board, user_2, position)
-    print("the board is ")
     pass
 
 
@@ -45,7 +45,6 @@ def player_input(user):
 def place_marker(board, marker, position):
     if check_if_is_number(position):
         board[int(position) - 1] = marker
-        display_board(board)
         win_check(board)
     else:
         print_error()
