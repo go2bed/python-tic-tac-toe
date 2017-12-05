@@ -2,7 +2,6 @@ game_is_over = False
 
 board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-
 def play_the_game():
     print("the board is ")
     display_board(board)
@@ -11,7 +10,6 @@ def play_the_game():
     win_check(board, position)
     print("your choice is: " + position)
     pass
-
 
 def display_board(board):
     i = 0
@@ -45,7 +43,7 @@ def check_if_is_number(position):
         return False
 
 
-def win_check(board, mark):
+def win_check(board):
     global game_is_over
     if ((board[6] == 'X' and board[7] == 'X' and board[8] == 'X') or  # across the top
             (board[3] == 'X' and board[4] == 'X' and board[5] == 'X') or  # across the middle
