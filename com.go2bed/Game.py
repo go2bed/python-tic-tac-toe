@@ -106,7 +106,7 @@ def print_error():
 
 player = choose_first()
 
-while game_is_over is not True and board.__sizeof__() != 0:
+while game_is_over is not True:
     play_the_game(player)
 else:
     print('The Game is over')
