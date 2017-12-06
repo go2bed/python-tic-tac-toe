@@ -121,7 +121,7 @@ def replay():
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         choose_first()
         game_is_over = False
-    else:
+    elif answer == 'N' or answer.upper().startswith('N'):
         game_is_over = True
 
 
