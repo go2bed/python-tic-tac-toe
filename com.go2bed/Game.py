@@ -114,8 +114,7 @@ def print_error():
 
 
 def replay():
-    global board
-    global game_is_over
+    global board, game_is_over
     answer = input("Do you want to play again? Y/N").upper().strip()
     if answer == 'Y' or answer.upper().startswith('Y'):
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
