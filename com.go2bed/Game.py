@@ -29,7 +29,7 @@ def play_the_game(player):
     display_board(board)
     position = player_input(player)
     place_marker(board, player, position)
-    win_check(board)
+    win_check(board, player)
     change_turn()
     pass
 
@@ -48,7 +48,7 @@ def display_board(board):
 def player_input(user):
     position = ''
     while position not in '1 2 3 4 5 6 7 8 9'.split():
-        position = input("Your turn, " + user + " select the number").strip()
+        position = input("Your turn, " + user + " select the number between 1 and 9").strip()
     return int(position)
 
 
@@ -68,29 +68,17 @@ def check_if_is_number(position):
         return False
 
 
-def win_check(board):
+def win_check(board, player):
     global game_is_over
-    if ((board[6] == 'X' and board[7] == 'X' and board[8] == 'X') or  # across the top
-            (board[3] == 'X' and board[4] == 'X' and board[5] == 'X') or  # across the middle
-            (board[0] == 'X' and board[1] == 'X' and board[2] == 'X') or  # across the bottom
-            (board[6] == 'X' and board[3] == 'X' and board[0] == 'X') or  # down the middle
-            (board[7] == 'X' and board[4] == 'X' and board[1] == 'X') or  # down the middle
-            (board[7] == 'X' and board[4] == 'X' and board[2] == 'X') or  # down the right side
-            (board[6] == 'X' and board[4] == 'X' and board[2] == 'X') or  # diagonal
-            (board[8] == 'X' and board[4] == 'X' and board[0] == 'X')):
-        print('Player 1 is won')
-        replay()
-
-
-    elif ((board[6] == 'O' and board[7] == 'O' and board[8] == 'O') or  # across the top
-              (board[3] == 'O' and board[4] == 'O' and board[5] == 'O') or  # across the middle
-              (board[0] == 'O' and board[1] == 'O' and board[2] == 'O') or  # across the bottom
-              (board[6] == 'O' and board[3] == 'O' and board[0] == 'O') or  # down the middle
-              (board[7] == 'O' and board[4] == 'O' and board[1] == 'O') or  # down the middle
-              (board[8] == 'O' and board[5] == 'O' and board[2] == 'O') or  # down the right side
-              (board[6] == 'O' and board[4] == 'O' and board[2] == 'O') or  # diagonal
-              (board[8] == 'O' and board[4] == 'O' and board[0] == 'O')):
-        print('Player 2 is won')
+    if ((board[6] == board[7] == board[8] == player) or  # across the top
+            (board[3] == board[4] == board[5] == player) or  # across the middle
+            (board[0] == board[1] == board[2] == player) or  # across the bottom
+            (board[6] == board[3] == board[0] == player) or  # down the middle
+            (board[7] == board[4] == board[1] == player) or  # down the middle
+            (board[7] == board[4] == board[2] == player) or  # down the right side
+            (board[6] == board[4] == board[2] == player) or  # diagonal
+            (board[8] == board[4] == board[0] == player)):
+        print("Player " + player + " is won")
         replay()
 
     elif ((board[0] == 'X' or board[0] == 'O') and
