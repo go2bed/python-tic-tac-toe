@@ -28,11 +28,8 @@ def play_the_game(player):
     print("the board is ")
     display_board(board)
     position = player_input(player)
-    if place_marker(board, player, position):
-        win_check(board)
-    else:
-        position = player_input(player)
-        place_marker(board, player, position)
+    place_marker(board, player, position)
+    win_check(board)
     change_turn()
     pass
 
@@ -49,19 +46,17 @@ def display_board(board):
 
 
 def player_input(user):
-    position = input("Your turn, " + user + " select the number")
-    return position
+    position = ''
+    while position not in '1 2 3 4 5 6 7 8 9'.split():
+        position = input("Your turn, " + user + " select the number").strip()
+    return int(position)
 
 
 def place_marker(board, marker, position):
-    if check_if_is_number(position) \
-            and check_if_is_number(board[int(position) - 1]) \
-            and 1 <= int(position) <= 9:
-        board[int(position) - 1] = marker
-        return True
+    if not check_if_is_number(board[position - 1]):
+        player_input(marker)
     else:
-        print_error()
-        return False
+        board[int(position) - 1] = marker
 
 
 def check_if_is_number(position):
@@ -69,6 +64,7 @@ def check_if_is_number(position):
         int(position)
         return True
     except ValueError:
+        print_error()
         return False
 
 
