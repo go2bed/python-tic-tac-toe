@@ -3,26 +3,33 @@ from random import randint
 game_is_over = False
 
 board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+player = randint(1, 2)
 
 def choose_first():
-    player = randint(1, 2)
+    global player
+    if player == 1:
+        player = 'X'
+    else:
+        player = 'O'
     return player
 
 
+def change_turn():
+    global player
+    if player == 'X':
+        player = 'O'
+    else:
+        player = 'X'
+
+
 def play_the_game(player):
-    user_1 = 'X'
-    user_2 = 'O'
+    print("The player " + player + " is turn now")
     print("the board is ")
     display_board(board)
-    if player == 1:
-        print("The first player (X) is turn first")
-        position = player_input(user_1)
-        place_marker(board, user_1, position)
-    else:
-        print("The second player (O) is turn first")
-        position = player_input(user_2)
-        place_marker(board, user_2, position)
+    position = player_input(player)
+    place_marker(board, player, position)
+    win_check(board)
+    change_turn()
     pass
 
 
@@ -38,14 +45,14 @@ def display_board(board):
 
 
 def player_input(user):
-    position = input("your turn, " + user + " select the number")
+    position = input("Your turn, " + user + " select the number")
     return position
 
 
 def place_marker(board, marker, position):
-    if check_if_is_number(position):
+    if check_if_is_number(position) and 1 <= int(position) <= 9:
         board[int(position) - 1] = marker
-        win_check(board)
+
     else:
         print_error()
 
