@@ -79,7 +79,7 @@ def win_check(board):
             (board[6] == 'X' and board[4] == 'X' and board[2] == 'X') or  # diagonal
             (board[8] == 'X' and board[4] == 'X' and board[0] == 'X')):
         print('Player 1 is won')
-        game_is_over = True
+        replay()
 
 
     elif ((board[6] == 'O' and board[7] == 'O' and board[8] == 'O') or  # across the top
@@ -91,7 +91,7 @@ def win_check(board):
               (board[6] == 'O' and board[4] == 'O' and board[2] == 'O') or  # diagonal
               (board[8] == 'O' and board[4] == 'O' and board[0] == 'O')):
         print('Player 2 is won')
-        game_is_over = True
+        replay()
 
     elif ((board[0] == 'X' or board[0] == 'O') and
               (board[1] == 'X' or board[1] == 'O') and
@@ -103,7 +103,7 @@ def win_check(board):
               (board[7] == 'X' or board[7] == 'O') and
               (board[8] == 'X' or board[8] == 'O')):
         print('Count is draw')
-        game_is_over = True
+        replay()
     else:
         pass
 
@@ -111,6 +111,18 @@ def win_check(board):
 def print_error():
     print("You should choose correct position for your turn")
     pass
+
+
+def replay():
+    global board
+    global game_is_over
+    answer = input("Do you want to play again? Y/N").upper().strip()
+    if answer == 'Y':
+        board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        choose_first()
+        game_is_over = False
+    else:
+        game_is_over = True
 
 
 player = choose_first()
