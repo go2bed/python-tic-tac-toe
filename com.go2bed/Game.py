@@ -5,6 +5,7 @@ game_is_over = False
 board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 player = randint(1, 2)
 
+
 def choose_first():
     global player
     if player == 1:
