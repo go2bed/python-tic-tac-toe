@@ -117,7 +117,7 @@ def replay():
     global board
     global game_is_over
     answer = input("Do you want to play again? Y/N").upper().strip()
-    if answer == 'Y':
+    if answer == 'Y' or answer.upper().startswith('Y'):
         board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         choose_first()
         game_is_over = False
